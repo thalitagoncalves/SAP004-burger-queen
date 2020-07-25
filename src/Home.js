@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   root: {
@@ -14,7 +14,6 @@ function Home() {
   const background = useStyles();
   return (
     <div className={background.root}>
-
       <section>
         <div>SEJA <strong>BEM</strong> VINDO</div>
       </section>
