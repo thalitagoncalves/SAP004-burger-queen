@@ -8,6 +8,11 @@ import LogoCozinha from '../src/assets/logo-login-cozinha.png';
 import GoBack from '../src/assets/menu-burger-voltar.png';
 
 const useStyles = makeStyles((theme) => ({
+	back: {
+		width: '70px',
+		height: '85px',
+		margin: '50px 730px 0px 0px'
+	},
 	logo: {
 		width: '145px',
 		height: '235px',
@@ -27,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
 	form: {
 		display: 'flex',
 		alignItems: 'center',
-		flexDirection: 'column'
-	}
+		flexDirection: 'column',
+		padding: '50px'
+	},
 }))
 
 function KitchenLogin() {
@@ -36,17 +42,17 @@ function KitchenLogin() {
 	return (
 		<Box className={classes.box}>
 			<div>
-				<Link to='/'><img src={GoBack} alt='voltar' title='voltar' /></Link>
+				<Link to='/'><img className={classes.back} src={GoBack} alt='voltar' title='voltar' /></Link>
 			</div>
 			<div>
 				<img src={LogoCozinha} alt='logo-cozinha' title='login cozinha' className={classes.logo} />
 			</div>
 			<div className={classes.form}>
-				<Input />
-				<Btn />
+				<Input width='120px' id='input-email' label='E-mail' type='email' />
+				<Input id='input-psswrd' label='Senha' type='password' />
+				<Btn name='Login' />
 			</div>
 		</Box>
-		// pensamos em colocar uma class com props para o Input, assim seria possível diferenciar campo de email e senha
 	)
 }
 

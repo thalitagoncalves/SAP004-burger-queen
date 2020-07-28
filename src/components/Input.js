@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 }) */
 
 const useStyles = makeStyles((theme) => ({
-  teste: {
+  space: {
     '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: '25ch',
@@ -18,33 +18,23 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     backgroundColor: '#D86B59',
+    color: '#F2F2F2',
   },
-  input: {
-    x: theme.props
-  }
 }));
 
 const Input = (props) => {
   const classes = useStyles()
   return (
-    <form className={classes.teste} noValidate autoComplete="off">
+    <form className={classes.space} noValidate autoComplete="off">
       <div>
         <TextField
-          theme={props}
-          className={classes.root}
           required
-          id="email-value"
-          label="E-mail"
-          variant="filled"
-        />
-        <TextField
           className={classes.root}
-          required
-          id="password-value"
-          label="Senha"
-          type="password"
-          autoComplete="current-password"
-          variant="filled"
+          id={props.id}
+          label={props.label}
+          type={props.type}
+          variant='filled'
+          size='normal'
         />
       </div>
     </form>
