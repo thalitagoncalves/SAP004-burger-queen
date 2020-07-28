@@ -67,8 +67,8 @@ function Home() {
       <section className={classes.container}>
         <p className={classes.choose}>Escolha sua carta</p>
         <div className={classes.cardContainer}>
-          <Link to='/kitchen'><img src={KitchenCard} alt='card-cozinha' className={classes.cards} /></Link>
-          <Link to='/hall'><img src={HallCard} alt='card-salao' className={classes.cards} /></Link>
+          <Link to='/kitchen-login'><img src={KitchenCard} alt='card-cozinha' className={classes.cards} /></Link>
+          <Link to='/hall-login'><img src={HallCard} alt='card-salao' className={classes.cards} /></Link>
           <Link to='/signup'><img src={register} alt='card-cadastro' className={classes.cards} /></Link>
         </div>
         <p className={classes.choose}>Por favor, <strong>escolha sua carta</strong> para realizar o login. Se é um novo funcionário, <strong>cadastre-se</strong>.</p>

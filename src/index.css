@@ -1,6 +1,5 @@
-body, #root {
+html, body, #root {
   background-color: #231812;
-  width: 100%;
 }
 
 * {
