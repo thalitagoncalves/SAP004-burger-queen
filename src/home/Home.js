@@ -2,17 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
-import logo from '../src/assets/logo-burger-queen.png';
-import register from '../src/assets/card-cadastro.png'
-import KitchenCard from '../src/assets/card-cozinha.png';
-import HallCard from '../src/assets/card-salao.png';
+import logo from '../assets/logo-burger-queen.png';
+import register from '../assets/card-cadastro.png'
+import KitchenCard from '../assets/card-cozinha.png';
+import HallCard from '../assets/card-salao.png';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
     height: '195px',
     width: '145px',
     paddingTop: '10px',
-    margin: '170px 170px 0px'
+    margin: '170px 170px 0px',
+    display: 'flex',
+    flexDirection: 'column',
   },
   container: {
     display: 'flex',
@@ -28,16 +30,6 @@ const useStyles = makeStyles((theme) => ({
     height: '295px',
     width: '225px',
     marginTop: '30px'
-  },
-  box: {
-    margin: '30px auto',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    border: 'solid 7px #DC4626',
-    borderRadius: '30px',
-    width: '90%',
-    height: '1300px',
   },
   welcome: {
     color: '#F2F2F2',
@@ -59,12 +51,12 @@ const useStyles = makeStyles((theme) => ({
 function Home() {
   const classes = useStyles();
   return (
-    <Box className={classes.box}>
-      <section>
+    <Box display='flex' flexDirection='column' alignItems='center'>
+      <Box>
         <img src={logo} alt='burger-queen' className={classes.logo} />
         <p className={classes.welcome}>SEJA <strong>BEM</strong> VINDO</p>
-      </section>
-      <section className={classes.container}>
+      </Box>
+      <Box className={classes.container}>
         <p className={classes.choose}>Escolha sua carta</p>
         <div className={classes.cardContainer}>
           <Link to='/kitchen-login'><img src={KitchenCard} alt='card-cozinha' className={classes.cards} /></Link>
@@ -72,7 +64,7 @@ function Home() {
           <Link to='/signup'><img src={register} alt='card-cadastro' className={classes.cards} /></Link>
         </div>
         <p className={classes.choose}>Por favor, <strong>escolha sua carta</strong> para realizar o login. Se é um novo funcionário, <strong>cadastre-se</strong>.</p>
-      </section>
+      </Box>
     </Box>
   )
 }
