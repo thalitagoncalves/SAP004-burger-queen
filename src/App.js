@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, createMuiTheme, } from '@material-ui/core';
 import Home from '../src/home/Home';
 import SignUp from '../src/home/SignUp';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -10,10 +10,12 @@ import LogoCozinha from './assets/logo-login-cozinha.png';
 import LogoSalao from './assets/logo-login-salao.png';
 import Login from './home/Login';
 
+const theme = createMuiTheme();
+
 function App() {
   const classes = LayoutUseStyles();
   return (
-    <ThemeProvider>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box className={classes.box}>
         <BrowserRouter>
