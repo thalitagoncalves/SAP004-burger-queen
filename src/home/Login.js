@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GoBack from '../assets/menu-burger-voltar.png';
 import { TextField, Button, Box } from '@material-ui/core';
-import useStylesInput from '../styles/Input.styles'
+import useStylesInput from '../styles/Input.styles';
 
 function Login({ srcImg, altImg, title }) {
 	const classes = useStylesInput();

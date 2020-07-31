@@ -5,7 +5,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Box, Button, TextField, FormLabel, FormControl, FormControlLabel, RadioGroup, Radio } from '@material-ui/core'
 import RegisterIcon from '../assets/logo-login-cadastro.png';
 import useStylesInput from '../styles/Input.styles';
-// import errorCodes from './error';
+import errorCodes from './error';
 
 function SignUp() {
 	const classes = useStylesInput();
@@ -13,33 +13,30 @@ function SignUp() {
 	const [value, setValue] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [confirm, setConfirm] = useState('');
 	const [username, setUsername] = useState('');
-	// const [error, setError] = useState('')
+	const [error, setError] = useState('')
 	let history = useHistory();
 
-	const register = (name, email, password, confirm, onError) => {
+	const register = (name, email, password) => {
 		firebase.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then((cred) => {
-				cred.user.updateProfile({ displayName: name })
-				history.push('/')
+				cred.user.updateProfile({ displayName: name });
+				return history.push('/')
 			})
-			.catch((err) => err)
+			.catch(function (error) {
+				if (errorCodes[error.code]) {
+					return setError(errorCodes[error.code])
+				} else {
+					return setError(errorCodes.DEFAULT_MESSAGE)
+				}
+			})
 	}
 
-	const createUser = (event, pass) => {
+	const createUser = (event) => {
 		event.preventDefault();
 		return register(username, email, password);
 	}
-
-	/* const onError = (error) => {
-		if (errorCodes[error.code]) {
-			setError(errorCodes[error.code]);
-		} else {
-			setError(errorCodes.DEFAULT_MESSAGE);
-		}
-	}; */
 
 	const handleChange = (event) => {
 		setValue(event.target.value);
@@ -65,7 +62,7 @@ function SignUp() {
 							value={username}
 							onChange={e => setUsername(e.target.value)}
 							variant='filled'
-							size='large'
+							size='medium'
 						/>
 					</Box>
 					<Box pb={3}>
@@ -78,7 +75,7 @@ function SignUp() {
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 							variant='filled'
-							size='large'
+							size='medium'
 						/>
 					</Box>
 					<Box pb={3}>
@@ -91,20 +88,7 @@ function SignUp() {
 							value={password}
 							onChange={e => setPassword(e.target.value)}
 							variant='filled'
-							size='large'
-						/>
-					</Box>
-					<Box pb={3}>
-						<TextField
-							required
-							className={classes.input}
-							id='input-confirm'
-							label='Confirme sua senha'
-							type='password'
-							value={confirm}
-							onChange={e => setConfirm(e.target.value)}
-							variant='filled'
-							size='large'
+							size='medium'
 						/>
 					</Box>
 					<FormControl component="fieldset">
@@ -114,6 +98,7 @@ function SignUp() {
 							<FormControlLabel value="cozinha" control={<Radio />} label="Cozinha" />
 						</RadioGroup>
 					</FormControl>
+					<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
 					<Button className={classes.edit} variant="contained" onClick={(event) => createUser(event)}>Cadastrar</Button>
 				</Box>
 			</Box>
