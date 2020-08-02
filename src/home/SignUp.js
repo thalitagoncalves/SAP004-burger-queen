@@ -25,11 +25,7 @@ function SignUp() {
 				return history.push('/')
 			})
 			.catch(function (error) {
-				if (errorCodes[error.code]) {
-					return setError(errorCodes[error.code])
-				} else {
-					return setError(errorCodes.DEFAULT_MESSAGE)
-				}
+				(errorCodes[error.code]) ? setError(errorCodes[error.code]) : setError(errorCodes.DEFAULT_MESSAGE)
 			})
 	}
 
