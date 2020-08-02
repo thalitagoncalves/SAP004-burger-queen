@@ -14,24 +14,39 @@ function SignUp() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [username, setUsername] = useState('');
-	const [error, setError] = useState('')
+	const [error, setError] = useState('');
 	let history = useHistory();
 
-	const register = (name, email, password) => {
+	const register = (nameFirebase, emailFirebase, pass, position) => {
 		firebase.auth()
-			.createUserWithEmailAndPassword(email, password)
+			.createUserWithEmailAndPassword(emailFirebase, pass)
 			.then((cred) => {
-				cred.user.updateProfile({ displayName: name });
-				return history.push('/')
+				cred.user.updateProfile({ displayName: nameFirebase });
+				userCollection(nameFirebase, emailFirebase, position, firebase.auth().currentUser.uid);
 			})
+			.then(() => history.push('/'))
 			.catch(function (error) {
 				(errorCodes[error.code]) ? setError(errorCodes[error.code]) : setError(errorCodes.DEFAULT_MESSAGE)
 			})
 	}
 
+	const userCollection = (user, emailCollection, position, uid) => {
+		firebase
+			.firestore()
+			.collection('users')
+			.doc(uid)
+			.set({
+				name: user,
+				email: emailCollection,
+				position,
+			})
+			.then((succses) => console.log(succses))
+			.catch((err) => console.log(err))
+	}
+
 	const createUser = (event) => {
 		event.preventDefault();
-		return register(username, email, password);
+		return register(username, email, password, value);
 	}
 
 	const handleChange = (event) => {
@@ -89,9 +104,9 @@ function SignUp() {
 					</Box>
 					<FormControl component="fieldset">
 						<FormLabel component="legend">Cargo</FormLabel>
-						<RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-							<FormControlLabel value="salao" control={<Radio />} label="Salão" />
-							<FormControlLabel value="cozinha" control={<Radio />} label="Cozinha" />
+						<RadioGroup aria-label="position" name="position" value={value} onChange={handleChange}>
+							<FormControlLabel value="atendente" control={<Radio />} label="Atendente" />
+							<FormControlLabel value="cozinheiro" control={<Radio />} label="Cozinheiro" />
 						</RadioGroup>
 					</FormControl>
 					<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
