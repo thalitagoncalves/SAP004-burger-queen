@@ -6,4 +6,4 @@ const useStylesInput = makeStyles({
   },
 });
 
-export default useStylesInput
+export default useStylesInput;

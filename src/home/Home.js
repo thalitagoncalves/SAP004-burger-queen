@@ -49,7 +49,7 @@ function Home() {
     <Box display='flex' flexDirection='column' alignItems='center'>
       <Box>
         <img src={logo} alt='burger-queen' className={classes.logo} />
-        <p className={classes.welcome}>SEJA <strong>BEM</strong> VINDO</p>
+        <p className={classes.welcome}>SEJA <strong>BEM VINDO!</strong></p>
       </Box>
       <Box display='flex' flexDirection='column' alignItems='center'>
         <p className={classes.choose}>Escolha sua carta</p>

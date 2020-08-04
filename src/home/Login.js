@@ -5,6 +5,12 @@ import GoBack from '../assets/menu-burger-voltar.png';
 import { TextField, Button, Box } from '@material-ui/core';
 import useStylesInput from '../styles/Input.styles';
 import errorCodes from './error';
+// import isAuth from '../auth'
+
+const findUserPosition = (uid) => {
+	return firebase.firestore().collection('users').doc(uid).get()
+		.then((doc) => doc.data().position)
+}
 
 function Login({ srcImg, altImg, title }) {
 	const classes = useStylesInput();
@@ -17,8 +23,9 @@ function Login({ srcImg, altImg, title }) {
 	const signIn = (sendEmail, sendPassword) => {
 		firebase
 			.auth().signInWithEmailAndPassword(sendEmail, sendPassword)
+			.then((res) => findUserPosition(res.user.uid))
 			.then((position) => {
-				history.push('/hall')
+				(position === 'atendente') ? history.push('/hall') : history.push('/kitchen')
 			})
 			.catch(function (error) {
 				(errorCodes[error.code] ? setError(errorCodes[error.code]) : setError(errorCodes.DEFAULT_MESSAGE))
