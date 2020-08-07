@@ -18,6 +18,8 @@ function Hall() {
   const [client, setClient] = useState('');
   const [number, setNumber] = useState('');
   const [menu, setMenu] = useState([]);
+  const [breakfast, setBreakfast] = useState([]);
+  const [brunch, setBrunch] = useState([]);
 
   const signOut = () => {
     firebase.auth().signOut()
@@ -49,6 +51,24 @@ function Hall() {
   useEffect(() => {
     getItems()
   }, [])
+
+  const filterBreakfast = (data) => {
+    const filterMenu = menu.filter((item) => item.type === data);
+    if (data === 'breakfast') {
+      return setBreakfast(filterMenu)
+    } else {
+      return setBrunch(filterMenu)
+    }
+  }
+
+  useEffect(() => {
+    filterBreakfast('breakfast')
+  }, [menu])
+
+  useEffect(() => {
+    filterBreakfast('brunch')
+  }, [menu])
+
 
   return (
     <Box>
@@ -93,14 +113,26 @@ function Hall() {
         </Box>
       </Box>
       <Box className={menuStyle.menu}>
-        {menu.map((item) => {
-          return (
-            <ul>
-              <li>{item.name}</li>
-              <li>R${item.price}</li>
-            </ul>
-          )
-        })}
+        <ul>
+          {breakfast.map((item) => {
+            return (
+              <>
+                <li>{item.name}</li>
+                <li>R${item.price}</li>
+              </>
+            )
+          })}
+        </ul>
+        <ul>
+          {brunch.map((item) => {
+            return (
+              <>
+                <li>{item.name}</li>
+                <li>{item.price}</li>
+              </>
+            )
+          })}
+        </ul>
       </Box>
     </Box>
   )
