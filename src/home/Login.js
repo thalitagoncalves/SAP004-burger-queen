@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import GoBack from '../assets/menu-burger-voltar.png';
 import { TextField, Button, Box } from '@material-ui/core';
 import useStylesInput from '../styles/Input.styles';
+import layoutStyles from '../styles/Layout.styles';
 import errorCodes from './error';
 // import isAuth from '../auth'
 
@@ -14,6 +15,7 @@ const findUserPosition = (uid) => {
 
 function Login({ srcImg, altImg, title }) {
 	const classes = useStylesInput();
+	const layout = layoutStyles();
 
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -38,7 +40,7 @@ function Login({ srcImg, altImg, title }) {
 	}
 
 	return (
-		<Box>
+		<Box className={layout.box}>
 			<Box m={6} display='flex' justifyContent='flex-start'>
 				<Link to='/'><img width='70px' height='85px' src={GoBack} alt='voltar' title='voltar' /></Link>
 			</Box>
