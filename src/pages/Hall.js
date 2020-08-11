@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../config';
 import { useHistory } from 'react-router-dom';
-import { Box, TextField, Typography, Button } from '@material-ui/core';
+import { Box, TextField, Typography, Button, List, ListItemText, Divider } from '@material-ui/core';
+import { AddCircle, RemoveCircle } from '@material-ui/icons';
 import Logo from '../assets/logo-branco-burger-queen.png';
 import BtnHall from '../assets/botao-salao.png';
 import BtnKitchen from '../assets/botao-cozinha.png';
@@ -20,6 +21,8 @@ function Hall() {
   const [menu, setMenu] = useState([]);
   const [breakfast, setBreakfast] = useState([]);
   const [brunch, setBrunch] = useState([]);
+  const [requests, setRequests] = useState([]);
+  // const [requestOrder, setRequestOrder] = useState([]);
 
   const signOut = () => {
     firebase.auth().signOut()
@@ -61,14 +64,31 @@ function Hall() {
     }
   }
 
-  useEffect(() => {
-    filterBreakfast('breakfast')
-  }, [menu])
+  useEffect(() => filterBreakfast('breakfast'), [menu]);
 
-  useEffect(() => {
-    filterBreakfast('brunch')
-  }, [menu])
+  useEffect(() => filterBreakfast('brunch'), [menu]);
 
+  const addItem = (obj) => {
+    const total = [...requests, obj]
+    setRequests(total);
+  }
+
+  const deleteItem = (index) => {
+    const filterToDelete = requests.filter((item, position) => index !== position);
+    return setRequests(filterToDelete)
+  }
+
+
+  const requestsCollection = (clientName, tableNUmber, itemID, quantity, data, requestID) => {
+    firebase
+      .firestore()
+      .collection('requests')
+      .doc(requestID)
+      .add({
+        client: clientName,
+        number: tableNUmber,
+      });
+  }
 
   return (
     <Box>
@@ -112,27 +132,50 @@ function Hall() {
           />
         </Box>
       </Box>
-      <Box className={menuStyle.menu}>
-        <ul>
-          {breakfast.map((item) => {
+      <Box display='flex'>
+        <Box display='flex' flexDirection='column' width='450px' className={menuStyle.menu}>
+          <List>
+            <h2 className={menuStyle.request}>Café da Manhã</h2>
+            {breakfast.map((item) => {
+              return (
+                <Box display='flex'>
+                  <ListItemText>{item.name} R${item.price}</ListItemText>
+                  <Button onClick={() => addItem(item)}><AddCircle /></Button>
+                  <data value={requests}></data>
+                </Box>
+              )
+            })}
+          </List>
+          <ul>
+            <h2 className={menuStyle.request}>Vespertino</h2>
+            {brunch.map((item) => {
+              return (
+                <Box display='flex'>
+                  <ListItemText>{item.name} R${item.price}</ListItemText>
+                  <Button onClick={() => addItem(item)}><AddCircle /></Button>
+                  <data value={requests}></data>
+                </Box>
+              )
+            })}
+          </ul>
+        </Box>
+        <Box display='flex' flexDirection='column' width='450px' className={menuStyle.menu}>
+          <h1 className={menuStyle.request}>Pedido</h1>
+          {requests.map((item, index) => {
             return (
-              <>
-                <li>{item.name}</li>
-                <li>R${item.price}</li>
-              </>
+              <Box display='flex'>
+                <ListItemText key={index}>{item.name} R${item.price}</ListItemText>
+                <data value={requests}></data>
+                {console.log(requests)}
+                <Button key={item.price + index} onClick={() => deleteItem(index)}><RemoveCircle /></Button>
+              </Box>
             )
           })}
-        </ul>
-        <ul>
-          {brunch.map((item) => {
-            return (
-              <>
-                <li>{item.name}</li>
-                <li>{item.price}</li>
-              </>
-            )
-          })}
-        </ul>
+        </Box>
+      </Box>
+      <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around'>
+        <h1>Valor total: R$</h1>
+        <Button>Enviar</Button>
       </Box>
     </Box>
   )
