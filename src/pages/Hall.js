@@ -68,8 +68,23 @@ function Hall() {
   useEffect(() => filterBreakfast('brunch'), [menu]);
 
   const addItem = (obj) => {
-    const total = [...requests, obj]
-    setRequests(total);
+    const updateRequests = requests.map((element) => {
+      if (element.name === obj.name) {
+        element.quantity++
+        return element;
+      } else {
+        return element;
+      }
+    });
+    const checkItem = requests.find(product => product.name === obj.name)
+    if (checkItem) {
+      //      checkItem.quantity++
+      setRequests(updateRequests)
+    } else {
+      obj.quantity = 1;
+      const total = [...requests, obj];
+      setRequests(total);
+    }
   }
 
   const deleteItem = (index) => {
@@ -164,7 +179,7 @@ function Hall() {
           {requests.map((item, index) => {
             return (
               <Box display='flex'>
-                <ListItemText key={index}>{item.name} R${item.price}</ListItemText>
+                <ListItemText key={index}>{item.name} R${item.price} {item.quantity}x</ListItemText>
                 <Button key={item.price + index} onClick={() => deleteItem(index)}><RemoveCircle /></Button>
               </Box>
             )
