@@ -6,6 +6,7 @@ import logo from '../assets/logo-burger-queen.png';
 import register from '../assets/card-cadastro.png'
 import KitchenCard from '../assets/card-cozinha.png';
 import HallCard from '../assets/card-salao.png';
+import layoutStyles from '../styles/Layout.styles';
 
 const useStyles = makeStyles((theme) => ({
   logo: {
@@ -45,11 +46,13 @@ const useStyles = makeStyles((theme) => ({
 
 function Home() {
   const classes = useStyles();
+  const layout = layoutStyles();
+
   return (
-    <Box display='flex' flexDirection='column' alignItems='center'>
+    <Box display='flex' flexDirection='column' alignItems='center' className={layout.box}>
       <Box>
         <img src={logo} alt='burger-queen' className={classes.logo} />
-        <p className={classes.welcome}>SEJA <strong>BEM</strong> VINDO</p>
+        <p className={classes.welcome}>SEJA <strong>BEM VINDO!</strong></p>
       </Box>
       <Box display='flex' flexDirection='column' alignItems='center'>
         <p className={classes.choose}>Escolha sua carta</p>

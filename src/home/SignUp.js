@@ -67,7 +67,6 @@ function SignUp() {
 						<TextField
 							required
 							className={classes.input}
-							id='input-name'
 							label='Seu nome'
 							type='text'
 							value={username}
@@ -80,7 +79,6 @@ function SignUp() {
 						<TextField
 							required
 							className={classes.input}
-							id='input-email'
 							label='E-mail'
 							type='email'
 							value={email}
@@ -93,7 +91,6 @@ function SignUp() {
 						<TextField
 							required
 							className={classes.input}
-							id='input-psswrd'
 							label='Senha'
 							type='password'
 							value={password}
