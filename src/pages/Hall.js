@@ -22,7 +22,6 @@ function Hall() {
   const [breakfast, setBreakfast] = useState([]);
   const [brunch, setBrunch] = useState([]);
   const [requests, setRequests] = useState([]);
-  // const [requestOrder, setRequestOrder] = useState([]);
 
   const signOut = () => {
     firebase.auth().signOut()
@@ -78,6 +77,11 @@ function Hall() {
     return setRequests(filterToDelete)
   }
 
+  const totalPrice = () => {
+    const sumPrice = requests.reduce((acc, current) => acc + current.price, 0);
+    return requests ? sumPrice : '0'
+  }
+
 
   const requestsCollection = (clientName, tableNUmber, itemID, quantity, data, requestID) => {
     firebase
@@ -107,20 +111,18 @@ function Hall() {
       <Box display='flex' flexDirection='column' alignItems='center'>
         <Box pb={3}>
           <TextField
-            required
             value={client}
-            onKeyPress={(e) => setClient(e.target.value)}
+            onChange={(e) => setClient(e.target.value)}
             className={styleInput.input}
-            id="filled-required"
             label="Cliente"
+            type='text'
             variant="filled"
           />
         </Box>
         <Box pb={3}>
           <TextField
-            required
             value={number}
-            onKeyPress={(e) => setNumber(e.target.value)}
+            onChange={(e) => setNumber(e.target.value)}
             className={styleInput.input}
             id="filled-number"
             label="Mesa"
@@ -141,7 +143,6 @@ function Hall() {
                 <Box display='flex'>
                   <ListItemText>{item.name} R${item.price}</ListItemText>
                   <Button onClick={() => addItem(item)}><AddCircle /></Button>
-                  <data value={requests}></data>
                 </Box>
               )
             })}
@@ -153,7 +154,6 @@ function Hall() {
                 <Box display='flex'>
                   <ListItemText>{item.name} R${item.price}</ListItemText>
                   <Button onClick={() => addItem(item)}><AddCircle /></Button>
-                  <data value={requests}></data>
                 </Box>
               )
             })}
@@ -165,8 +165,6 @@ function Hall() {
             return (
               <Box display='flex'>
                 <ListItemText key={index}>{item.name} R${item.price}</ListItemText>
-                <data value={requests}></data>
-                {console.log(requests)}
                 <Button key={item.price + index} onClick={() => deleteItem(index)}><RemoveCircle /></Button>
               </Box>
             )
@@ -174,7 +172,7 @@ function Hall() {
         </Box>
       </Box>
       <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around'>
-        <h1>Valor total: R$</h1>
+        <h1>Valor total: R$ {totalPrice()}</h1>
         <Button>Enviar</Button>
       </Box>
     </Box>
