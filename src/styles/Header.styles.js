@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
   header: {
     backgroundColor: '#DC4626',
-    margin: 'auto',
     height: '85px',
     padding: '15px',
     alignItems: 'center',
