@@ -117,6 +117,7 @@ function Hall() {
         <Box>
           <img width='auto' height='60px' src={Logo} alt='logo-burger-queen-branca' title='logo burger queen branca' />
         </Box>
+        <Typography variant='h6'>Atendente: {firebase.auth().currentUser.displayName}</Typography>
         <Button onClick={logOut}>Sair</Button>
       </Box>
       <Box display='flex' justifyContent='space-around' m='auto' p={3.75}>

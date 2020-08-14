@@ -59,12 +59,11 @@ function Kitchen() {
       <Box>
         {requests.map((item) => {
           return (
-            <Box display='flex' className={card.menu}>
-              <ListItemText>{item.client}</ListItemText>
-              <ListItemText>{item.number}</ListItemText>
+            <Box display='flex' alignItems='center' flexDirection='column' textAlign='center' width='250px' className={card.menu}>
+              <ListItemText>{item.client}, {item.number}</ListItemText>
               <ListItemText>{item.products.map((product) => {
                 return (
-                  <ListItemText>{product.name}</ListItemText>
+                  <ListItemText>{product.name} {product.quantity}x</ListItemText>
                 )
               })}</ListItemText>
             </Box>
