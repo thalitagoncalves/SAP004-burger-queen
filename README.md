@@ -1,68 +1,89 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Burger Queen
 
-## Available Scripts
+Acesse a página clicando [aqui](https://burger-queen-a7469.web.app/)
 
-In the project directory, you can run:
+## Índice
 
-### `npm start`
+* [1. Prefácio](#1-prefácio)
+* [2. Planejamento do Projeto](#2-planejamento-do-projeto)
+* [3. Prototipagem](#3-prototipagem)
+* [4.Implementações Futuras](#4-Implementacoes-futuras)
+* [5.Aprendizado](#5-aprendizado)
+* [6. Tecnologias Utilizadas](#6-tecnologias-utilizadas)
+* [Autoria](#autoria)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+***
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 1. Prefácio
 
-### `npm test`
+A aplicação Burger Queen oferece um produto digital para restaurantes. Nesta aplicação o cliente proporciona aos seus funcionários uma interface capaz de automatizar o fluxo de anotações de pedidos e envio da solicitação para a cozinha. O sistema conta com a tecnologia de privacidade na página de cada cargo, ou seja, o garçom/garçonete serão direcionados automaticamente para a página de anotação de pedidos e o cozinheiro terá acesso apenas a página de exibição das solicitações enviadas pelos funcionários do salão. 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 2. Planejamento do projeto
 
-### `npm run build`
+A nível de organização, o nosso projeto foi dividido por sprints e para guiar nosso trabalho, contamos com a estruturação de Histórias de Usuário e só avançamos conforme a HU anterior estivesse totalmente usual e sem nenhum bug.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### História 1
+Como definição de pronto dessa primeira história, decidimos que o usuário poderia se cadastrar como Atendente ou como Cozinheiro.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Em ambos casos, na tela de registro o usuário pode definir o nome que irá aparecer no display.
+Ele deve inserir um e-mail e uma senha válidos, caso algum dos campos esteja inválido, a página exibe uma mensagem de erro e solicita que o usuário tente novamente. Quando o cadastro do usuário é feito com sucesso, automaticamente ele é direcionado para a página de login. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Na página de login, se o usuário insere algum e-mail inválido ou digita uma senha errada, novamente a página exibe uma mensagem de erro para que ele tente novamente. Quando obtém sucesso, o usuário é automaticamente direcionado para o página correspondente ao seu cargo.
 
-### `npm run eject`
+#### História 2
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+As definições de pronto dessa história consistem no Atendente conseguir anotar o nome e a mesa do cliente, selecionar os produtos requeridos pelo cliente, verificar o resumo do pedido, tal como quantidade e preço e por fim, deletar pedidos antes de enviá-los para a cozinha caso seja solicitado pelo cliente. 
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Além disso, após o envio ser feito com sucesso, os campos de inserção de nome e mesa são resetados e a página exibe um alerta informando o sucesso.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### História 3
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Nessa história, o objetivo principal era exibir os pedidos anotados pelo Atendente na interface do cozinheiro. 
 
-## Learn More
+Todos os pedidos constam com um botão de finalização do pedido. Então, quando o Cozinheiro termina o preparo do pedido, ele pode clicar neste botão e o pedido não aparecerá mais na tela. Após notificar a conclusão do pedido e o mesmo ser dado como "Pronto", o cozinheiro é notificado sobre o envio do pedido através de um alerta na página.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 3. Prototipagem
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![InteratividaComOsFiltros](src/Imagens/grafico4_hus.png)
 
-### Code Splitting
+#### Informações adicionais
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* A aplicação foi pensada para tablets;
+* A aplicação foi construída em uma Single Page Aplication;
+* Para armazenar os dados de usuário e pedidos, foi utilizado o banco de dados Firebase. Através dessa tecnologia, os dados enviados de uma interface para a outra não são perdidos após deslogar. 
+* Para ter um direcionamento da identidade visual da página, trabalhamos com protótipos.
 
-### Analyzing the Bundle Size
+## 4. Implementações Futuras
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+Nas próximas versões do produto pretendemos:
 
-### Making a Progressive Web App
+* Trabalhar melhor a responsividade da aplicação para todos os dispositivos;
+* Criar uma tela em que o garçom posso verificar os pedidos notificados pela cozinha como prontos.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### Advanced Configuration
+## 5. Aprendizado
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+* Manipulação da maior parte do layout da página com a biblioteca Material UI;
+* Uso de callbacks, consumo de Promises e uso de ES Modules - JS;
+* Manipulação da SPA por Estados através do uso de React.JS;
+* Firebase Authentication, Firestore, onSnapshot, Firebase Hosting - Firebase
+* Colaboração por Git e GitHub.
 
-### Deployment
+## 6. Tecnologias Utilizadas
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+* React.JS
+* Material UI
+* Firebase
+* Adobe Illustrator
+* Node.js
+* Trello
 
-### `npm run build` fails to minify
+### Desenvolvido por
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[Thalita Gonçalves](https://github.com/thalitagoncalves/)
+
+[Francieli Abreu](https://github.com/francielisabreu)
+
+#### O projeto foi proposto no Bootcamp @Laboratoria.
+
+
