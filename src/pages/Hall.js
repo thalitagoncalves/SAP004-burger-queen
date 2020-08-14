@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../config';
 import { useHistory } from 'react-router-dom';
-import { Box, TextField, Typography, Button, List, ListItemText, Snackbar } from '@material-ui/core';
+import { Box, TextField, Typography, Button, List, ListItemText } from '@material-ui/core';
 import { AddCircle, RemoveCircle } from '@material-ui/icons';
 import Logo from '../assets/logo-branco-burger-queen.png';
 import BtnHall from '../assets/botao-salao.png';
@@ -190,7 +190,13 @@ function Hall() {
       </Box>
       <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around'>
         <h1>Valor total: R$ {totalPrice()}</h1>
-        <Button onClick={() => requestsCollection(client, number, requests, 'pendente')}>Enviar</Button>
+        <Button onClick={() => {
+          requestsCollection(client, number, requests, 'pendente')
+          setClient('');
+          setNumber('')
+          setRequests([])
+          alert('Pedido enviado para a cozinha!')
+        }}>Enviar</Button>
       </Box>
     </Box>
   )

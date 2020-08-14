@@ -1,48 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from '../styles/Home.styles';
 import { Box } from '@material-ui/core';
 import logo from '../assets/logo-burger-queen.png';
 import register from '../assets/card-cadastro.png'
 import KitchenCard from '../assets/card-cozinha.png';
 import HallCard from '../assets/card-salao.png';
 import layoutStyles from '../styles/Layout.styles';
-
-const useStyles = makeStyles((theme) => ({
-  logo: {
-    height: '195px',
-    width: '145px',
-    paddingTop: '10px',
-    margin: '170px 170px 0px',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardContainer: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
-    width: '100%'
-  },
-  cards: {
-    height: '295px',
-    width: '225px',
-    marginTop: '30px'
-  },
-  welcome: {
-    color: '#F2F2F2',
-    fontSize: '30px',
-    paddingTop: '10%',
-    textAlign: 'center'
-  },
-  choose: {
-    color: '#F2F2F2',
-    fontSize: '30px',
-    width: '85%',
-    textAlign: 'center',
-    margin: '50px auto'
-  },
-}))
-
-
 
 function Home() {
   const classes = useStyles();
@@ -68,4 +32,4 @@ function Home() {
 }
 
 
-export default Home
+export default Home;
