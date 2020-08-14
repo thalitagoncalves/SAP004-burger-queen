@@ -44,7 +44,7 @@ Todos os pedidos constam com um botão de finalização do pedido. Então, quand
 
 ## 3. Prototipagem
 
-![InteratividaComOsFiltros](src/Imagens/grafico4_hus.png)
+![PrototipoHome](/src/assets/home-burger-queen.png)
 
 #### Informações adicionais
 
