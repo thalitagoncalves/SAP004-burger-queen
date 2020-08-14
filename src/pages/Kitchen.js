@@ -72,7 +72,10 @@ function Kitchen() {
                   <ListItemText>{product.name} {product.quantity}x</ListItemText>
                 )
               })}</ListItemText>
-              <Button className={btnStyle.edit} variant="contained" onClick={() => updateStatus('Pronto', item.id)}>Pronto</Button>
+              <Button className={btnStyle.edit} variant="contained" onClick={() => {
+                updateStatus('Pronto', item.id)
+                return alert('Pedido enviado para o salão!')
+              }}>Pronto</Button>
             </Box>
           )
         })}
