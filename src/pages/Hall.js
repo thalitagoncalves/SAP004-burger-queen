@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import firebase from '../config';
 import { useHistory } from 'react-router-dom';
-import { Box, TextField, Typography, Button, List, ListItemText, Divider } from '@material-ui/core';
+import { Box, TextField, Typography, Button, List, ListItemText, Snackbar } from '@material-ui/core';
 import { AddCircle, RemoveCircle } from '@material-ui/icons';
 import Logo from '../assets/logo-branco-burger-queen.png';
 import BtnHall from '../assets/botao-salao.png';
@@ -33,6 +33,7 @@ function Hall() {
 
   const logOut = (event) => {
     event.preventDefault();
+    localStorage.clear();
     return signOut();
   }
 
@@ -54,18 +55,18 @@ function Hall() {
     getItems()
   }, [])
 
-  const filterBreakfast = (data) => {
-    const filterMenu = menu.filter((item) => item.type === data);
+  const filterMenu = (data) => {
+    const filterByItems = menu.filter((item) => item.type === data);
     if (data === 'breakfast') {
-      return setBreakfast(filterMenu)
+      return setBreakfast(filterByItems)
     } else {
-      return setBrunch(filterMenu)
+      return setBrunch(filterByItems)
     }
   }
 
-  useEffect(() => filterBreakfast('breakfast'), [menu]);
+  useEffect(() => filterMenu('breakfast'), [menu]);
 
-  useEffect(() => filterBreakfast('brunch'), [menu]);
+  useEffect(() => filterMenu('brunch'), [menu]);
 
   const addItem = (obj) => {
     const updateRequests = requests.map((element) => {
@@ -78,7 +79,6 @@ function Hall() {
     });
     const checkItem = requests.find(product => product.name === obj.name)
     if (checkItem) {
-      //      checkItem.quantity++
       setRequests(updateRequests)
     } else {
       obj.quantity = 1;
@@ -98,15 +98,17 @@ function Hall() {
   }
 
 
-  const requestsCollection = (clientName, tableNUmber, itemID, quantity, data, requestID) => {
+  const requestsCollection = (clientName, tableNUmber, request, status) => {
     firebase
       .firestore()
       .collection('requests')
-      .doc(requestID)
       .add({
         client: clientName,
         number: tableNUmber,
-      });
+        data: new Date(),
+        products: request,
+        status: status
+      })
   }
 
   return (
@@ -115,7 +117,6 @@ function Hall() {
         <Box>
           <img width='auto' height='60px' src={Logo} alt='logo-burger-queen-branca' title='logo burger queen branca' />
         </Box>
-        <Typography variant='h6'>Atendente: {firebase.auth().currentUser.displayName}</Typography>
         <Button onClick={logOut}>Sair</Button>
       </Box>
       <Box display='flex' justifyContent='space-around' m='auto' p={3.75}>
@@ -188,10 +189,11 @@ function Hall() {
       </Box>
       <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around'>
         <h1>Valor total: R$ {totalPrice()}</h1>
-        <Button>Enviar</Button>
+        <Button onClick={() => requestsCollection(client, number, requests, 'pendente')}>Enviar</Button>
       </Box>
     </Box>
   )
 }
+
 
 export default Hall;
