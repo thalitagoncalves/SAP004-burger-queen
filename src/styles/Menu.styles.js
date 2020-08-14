@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     borderRadius: '30px',
   },
   request: {
-    alignSelf: 'center',
+    margin: '2px',
   }
 })
 
