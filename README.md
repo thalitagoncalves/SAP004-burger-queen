@@ -7,10 +7,10 @@ Acesse a página clicando [aqui](https://burger-queen-a7469.web.app/)
 * [1. Prefácio](#1-prefácio)
 * [2. Planejamento do Projeto](#2-planejamento-do-projeto)
 * [3. Prototipagem](#3-prototipagem)
-* [4.Aprendizado](#3-aprendizado)
-* [5.Implementações Futuras](#4-Implementacoes-futuras)
-* [5. Tecnologias Utilizadas](#4-tecnologias-utilizadas)
-* [6. Autoria](#5-autoria)
+* [4.Implementações Futuras](#4-Implementacoes-futuras)
+* [5.Aprendizado](#5-aprendizado)
+* [6. Tecnologias Utilizadas](#6-tecnologias-utilizadas)
+* [Autoria](#autoria)
 
 ***
 
@@ -42,6 +42,10 @@ Nessa história, o objetivo principal era exibir os pedidos anotados pelo Atende
 
 Todos os pedidos constam com um botão de finalização do pedido. Então, quando o Cozinheiro termina o preparo do pedido, ele pode clicar neste botão e o pedido não aparecerá mais na tela. Após notificar a conclusão do pedido e o mesmo ser dado como "Pronto", o cozinheiro é notificado sobre o envio do pedido através de um alerta na página.
 
+## 3. Prototipagem
+
+![InteratividaComOsFiltros](src/Imagens/grafico4_hus.png)
+
 #### Informações adicionais
 
 * A aplicação foi pensada para tablets;
@@ -49,8 +53,15 @@ Todos os pedidos constam com um botão de finalização do pedido. Então, quand
 * Para armazenar os dados de usuário e pedidos, foi utilizado o banco de dados Firebase. Através dessa tecnologia, os dados enviados de uma interface para a outra não são perdidos após deslogar. 
 * Para ter um direcionamento da identidade visual da página, trabalhamos com protótipos.
 
+## 4. Implementações Futuras
 
-## 3. Aprendizado
+Nas próximas versões do produto pretendemos:
+
+* Trabalhar melhor a responsividade da aplicação para todos os dispositivos;
+* Criar uma tela em que o garçom posso verificar os pedidos notificados pela cozinha como prontos.
+
+
+## 5. Aprendizado
 
 * Manipulação da maior parte do layout da página com a biblioteca Material UI;
 * Uso de callbacks, consumo de Promises e uso de ES Modules - JS;
@@ -58,7 +69,7 @@ Todos os pedidos constam com um botão de finalização do pedido. Então, quand
 * Firebase Authentication, Firestore, onSnapshot, Firebase Hosting - Firebase
 * Colaboração por Git e GitHub.
 
-## 4. Tecnologias Utilizadas
+## 6. Tecnologias Utilizadas
 
 * React.JS
 * Material UI
