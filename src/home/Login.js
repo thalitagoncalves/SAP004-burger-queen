@@ -48,34 +48,36 @@ function Login({ srcImg, altImg, title }) {
 				<Box pt={15}>
 					<img src={srcImg} alt={altImg} title={title} width='145px' height='235px' />
 				</Box>
-				<Box display='flex' flexDirection='column' alignItems='center' p='20px'>
-					<Box pb={3}>
-						<TextField
-							required
-							className={classes.input}
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							label='E-mail'
-							type='email'
-							variant='filled'
-							size='medium'
-						/>
+				<form method='post'>
+					<Box display='flex' flexDirection='column' alignItems='center' p='20px'>
+						<Box pb={3}>
+							<TextField
+								required
+								className={classes.input}
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+								label='E-mail'
+								type='email'
+								variant='filled'
+								size='medium'
+							/>
+						</Box>
+						<Box pb={3}>
+							<TextField
+								required
+								className={classes.input}
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+								label='Senha'
+								type='password'
+								variant='filled'
+								size='medium'
+							/>
+						</Box>
+						<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
+						<Button className={classes.edit} variant="contained" onClick={(event) => login(event)}>Acessar</Button>
 					</Box>
-					<Box pb={3}>
-						<TextField
-							required
-							className={classes.input}
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							label='Senha'
-							type='password'
-							variant='filled'
-							size='medium'
-						/>
-					</Box>
-					<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
-					<Button className={classes.edit} variant="contained" onClick={(event) => login(event)}>Acessar</Button>
-				</Box>
+				</form>
 			</Box>
 		</Box>
 	)

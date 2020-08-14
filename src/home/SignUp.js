@@ -62,53 +62,55 @@ function SignUp() {
 				<Box pt={15}>
 					<img src={RegisterIcon} alt='logo-cadastro' title='cadastro' width='145px' height='235px' />
 				</Box>
-				<Box display='flex' flexDirection='column' alignItems='center' p='50px'>
-					<Box pb={3}>
-						<TextField
-							required
-							className={classes.input}
-							label='Seu nome'
-							type='text'
-							value={username}
-							onChange={e => setUsername(e.target.value)}
-							variant='filled'
-							size='medium'
-						/>
+				<form method='post'>
+					<Box display='flex' flexDirection='column' alignItems='center' p='50px'>
+						<Box pb={3}>
+							<TextField
+								required
+								className={classes.input}
+								label='Seu nome'
+								type='text'
+								value={username}
+								onChange={e => setUsername(e.target.value)}
+								variant='filled'
+								size='medium'
+							/>
+						</Box>
+						<Box pb={3}>
+							<TextField
+								required
+								className={classes.input}
+								label='E-mail'
+								type='email'
+								value={email}
+								onChange={e => setEmail(e.target.value)}
+								variant='filled'
+								size='medium'
+							/>
+						</Box>
+						<Box pb={3}>
+							<TextField
+								required
+								className={classes.input}
+								label='Senha'
+								type='password'
+								value={password}
+								onChange={e => setPassword(e.target.value)}
+								variant='filled'
+								size='medium'
+							/>
+						</Box>
+						<FormControl component="fieldset">
+							<FormLabel component="legend">Cargo</FormLabel>
+							<RadioGroup aria-label="position" name="position" value={value} onChange={handleChange}>
+								<FormControlLabel value="atendente" control={<Radio />} label="Atendente" />
+								<FormControlLabel value="cozinheiro" control={<Radio />} label="Cozinheiro" />
+							</RadioGroup>
+						</FormControl>
+						<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
+						<Button className={classes.edit} variant="contained" onClick={(event) => createUser(event)}>Cadastrar</Button>
 					</Box>
-					<Box pb={3}>
-						<TextField
-							required
-							className={classes.input}
-							label='E-mail'
-							type='email'
-							value={email}
-							onChange={e => setEmail(e.target.value)}
-							variant='filled'
-							size='medium'
-						/>
-					</Box>
-					<Box pb={3}>
-						<TextField
-							required
-							className={classes.input}
-							label='Senha'
-							type='password'
-							value={password}
-							onChange={e => setPassword(e.target.value)}
-							variant='filled'
-							size='medium'
-						/>
-					</Box>
-					<FormControl component="fieldset">
-						<FormLabel component="legend">Cargo</FormLabel>
-						<RadioGroup aria-label="position" name="position" value={value} onChange={handleChange}>
-							<FormControlLabel value="atendente" control={<Radio />} label="Atendente" />
-							<FormControlLabel value="cozinheiro" control={<Radio />} label="Cozinheiro" />
-						</RadioGroup>
-					</FormControl>
-					<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
-					<Button className={classes.edit} variant="contained" onClick={(event) => createUser(event)}>Cadastrar</Button>
-				</Box>
+				</form>
 			</Box>
 		</Box>
 	)
