@@ -7,7 +7,8 @@ const useStyles = makeStyles({
     width: '230px',
     height: '55px',
     fontSize: '14px',
-    fontWeight: '900'
+    fontWeight: '900',
+    margin: '20px',
   }
 })
 
