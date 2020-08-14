@@ -4,9 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { Box, TextField, Typography, Button, List, ListItemText } from '@material-ui/core';
 import { AddCircle, RemoveCircle } from '@material-ui/icons';
 import Logo from '../assets/logo-branco-burger-queen.png';
-import BtnHall from '../assets/botao-salao.png';
-import BtnKitchen from '../assets/botao-cozinha.png';
-import BtnHist from '../assets/botao-historico.png';
 import HeaderStyle from '../styles/Header.styles';
 import useStylesInput from '../styles/Input.styles';
 import menuStyles from '../styles/Menu.styles';
@@ -113,19 +110,14 @@ function Hall() {
 
   return (
     <Box>
-      <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around'>
+      <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around' margin='auto'>
         <Box>
           <img width='auto' height='60px' src={Logo} alt='logo-burger-queen-branca' title='logo burger queen branca' />
         </Box>
         <Typography variant='h6'>Atendente: {firebase.auth().currentUser.displayName}</Typography>
         <Button onClick={logOut}>Sair</Button>
       </Box>
-      <Box display='flex' justifyContent='space-around' m='auto' p={3.75}>
-        <img width='270px' height='auto' src={BtnHall} alt='botao-status-salao' title='botão status salão' />
-        <img width='270px' height='auto' src={BtnKitchen} alt='botao-status-cozinha' title='botão status salão' />
-        <img width='270px' height='auto' src={BtnHist} alt='botao-historico' title='botão histórico' />
-      </Box>
-      <Box display='flex' flexDirection='column' alignItems='center'>
+      <Box display='flex' flexDirection='column' alignItems='center' marginTop='50px'>
         <Box pb={3}>
           <TextField
             value={client}
@@ -151,7 +143,7 @@ function Hall() {
           />
         </Box>
       </Box>
-      <Box display='flex'>
+      <Box display='flex' justifyContent='space-around' marginTop='40px'>
         <Box display='flex' flexDirection='column' width='450px' className={menuStyle.menu}>
           <List>
             <h2 className={menuStyle.request}>Café da Manhã</h2>
@@ -188,7 +180,7 @@ function Hall() {
           })}
         </Box>
       </Box>
-      <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around'>
+      <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around' margin='50px'>
         <h1>Valor total: R$ {totalPrice()}</h1>
         <Button onClick={() => {
           requestsCollection(client, number, requests, 'pendente')
