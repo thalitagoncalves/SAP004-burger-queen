@@ -4,9 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { Box, TextField, Typography, Button, List, ListItemText } from '@material-ui/core';
 import { AddCircle, RemoveCircle } from '@material-ui/icons';
 import Logo from '../assets/logo-branco-burger-queen.png';
-import BtnHall from '../assets/botao-salao.png';
-import BtnKitchen from '../assets/botao-cozinha.png';
-import BtnHist from '../assets/botao-historico.png';
 import HeaderStyle from '../styles/Header.styles';
 import useStylesInput from '../styles/Input.styles';
 import menuStyles from '../styles/Menu.styles';
@@ -119,11 +116,6 @@ function Hall() {
         </Box>
         <Typography variant='h6'>Atendente: {firebase.auth().currentUser.displayName}</Typography>
         <Button onClick={logOut}>Sair</Button>
-      </Box>
-      <Box display='flex' justifyContent='space-around' m='auto' p={3.75}>
-        <img width='270px' height='auto' src={BtnHall} alt='botao-status-salao' title='botão status salão' />
-        <img width='270px' height='auto' src={BtnKitchen} alt='botao-status-cozinha' title='botão status salão' />
-        <img width='270px' height='auto' src={BtnHist} alt='botao-historico' title='botão histórico' />
       </Box>
       <Box display='flex' flexDirection='column' alignItems='center'>
         <Box pb={3}>
