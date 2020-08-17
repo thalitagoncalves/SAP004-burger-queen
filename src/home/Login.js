@@ -4,9 +4,9 @@ import { Link, useHistory } from 'react-router-dom';
 import GoBack from '../assets/menu-burger-voltar.png';
 import { TextField, Button, Box } from '@material-ui/core';
 import useStylesInput from '../styles/Input.styles';
+import buttonStyles from '../styles/Button.style';
 import layoutStyles from '../styles/Layout.styles';
 import errorCodes from './error';
-// import isAuth from '../auth'
 
 const findUserPosition = (uid) => {
 	return firebase.firestore().collection('users').doc(uid).get()
@@ -16,7 +16,7 @@ const findUserPosition = (uid) => {
 function Login({ srcImg, altImg, title }) {
 	const classes = useStylesInput();
 	const layout = layoutStyles();
-
+	const btnStyle = buttonStyles();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState('');
@@ -74,8 +74,8 @@ function Login({ srcImg, altImg, title }) {
 								size='medium'
 							/>
 						</Box>
-						<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
-						<Button className={classes.edit} variant="contained" onClick={(event) => login(event)}>Acessar</Button>
+						<Button className={btnStyle.edit} variant="contained" onClick={(event) => login(event)}>Acessar</Button>
+						<Box p={3} className={classes.errorMsg} value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
 					</Box>
 				</form>
 			</Box>
