@@ -4,12 +4,15 @@ import GoBack from '../assets/menu-burger-voltar.png';
 import { Link, useHistory } from 'react-router-dom'
 import { Box, Button, TextField, FormLabel, FormControl, FormControlLabel, RadioGroup, Radio } from '@material-ui/core'
 import RegisterIcon from '../assets/logo-login-cadastro.png';
+import layoutStyles from '../styles/Layout.styles';
 import useStylesInput from '../styles/Input.styles';
+import buttonStyles from '../styles/Button.style';
 import errorCodes from './error';
 
 function SignUp() {
 	const classes = useStylesInput();
-
+	const layout = layoutStyles();
+	const btnStyle = buttonStyles();
 	const [value, setValue] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -54,7 +57,7 @@ function SignUp() {
 	};
 
 	return (
-		<Box>
+		<Box className={layout.box}>
 			<Box m={6} display='flex' justifyContent="flex-start">
 				<Link to='/'><img width='70px' height='85px' src={GoBack} alt='voltar' title='voltar' /></Link>
 			</Box>
@@ -100,15 +103,17 @@ function SignUp() {
 								size='medium'
 							/>
 						</Box>
-						<FormControl component="fieldset">
-							<FormLabel component="legend">Cargo</FormLabel>
-							<RadioGroup aria-label="position" name="position" value={value} onChange={handleChange}>
-								<FormControlLabel value="atendente" control={<Radio />} label="Atendente" />
-								<FormControlLabel value="cozinheiro" control={<Radio />} label="Cozinheiro" />
-							</RadioGroup>
-						</FormControl>
-						<Box value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
-						<Button className={classes.edit} variant="contained" onClick={(event) => createUser(event)}>Cadastrar</Button>
+						<Box textAlign='center'>
+							<FormControl component="fieldset">
+								<FormLabel className={classes.radio} component="legend">Cargo</FormLabel>
+								<RadioGroup aria-label="position" name="position" value={value} onChange={handleChange}>
+									<FormControlLabel className={classes.radio} value="atendente" control={<Radio />} label="Atendente" />
+									<FormControlLabel className={classes.radio} value="cozinheiro" control={<Radio />} label="Cozinheiro" />
+								</RadioGroup>
+							</FormControl>
+						</Box>
+						<Button className={btnStyle.edit} variant="contained" onClick={(event) => createUser(event)}>Cadastrar</Button>
+						<Box p={3} className={classes.errorMsg} value={error} onChange={(e) => setError(e.target.value)}>{error}</Box>
 					</Box>
 				</form>
 			</Box>
