@@ -2,16 +2,20 @@ import React, { useState, useEffect } from 'react';
 import firebase from '../config';
 import { useHistory } from 'react-router-dom';
 import { Box, TextField, Typography, Button, List, ListItemText } from '@material-ui/core';
-import { AddCircle, RemoveCircle } from '@material-ui/icons';
 import Logo from '../assets/logo-branco-burger-queen.png';
 import HeaderStyle from '../styles/Header.styles';
 import useStylesInput from '../styles/Input.styles';
 import menuStyles from '../styles/Menu.styles';
+import textStyle from '../styles/Text.styles';
+import buttonStyles from '../styles/Button.style';
+import { StyledAddIcon, StyledRemoveIcon } from '../styles/Icons.styles';
 
 function Hall() {
   const classes = HeaderStyle();
   const styleInput = useStylesInput();
   const menuStyle = menuStyles();
+  const text = textStyle();
+  const btnStyle = buttonStyles();
   const history = useHistory();
   const [client, setClient] = useState('');
   const [number, setNumber] = useState('');
@@ -151,7 +155,7 @@ function Hall() {
               return (
                 <Box display='flex'>
                   <ListItemText>{item.name} R${item.price}</ListItemText>
-                  <Button onClick={() => addItem(item)}><AddCircle /></Button>
+                  <Button onClick={() => addItem(item)}><StyledAddIcon></StyledAddIcon></Button>
                 </Box>
               )
             })}
@@ -162,11 +166,11 @@ function Hall() {
               return (
                 <Box display='flex'>
                   <ListItemText>{item.name} R${item.price}</ListItemText>
-                  <Button onClick={() => addItem(item)}><AddCircle /></Button>
+                  <Button onClick={() => addItem(item)}><StyledAddIcon></StyledAddIcon></Button>
                 </Box>
               )
             })}
-          </ul>
+          </ul>backgroundColor
         </Box>
         <Box display='flex' flexDirection='column' width='450px' className={menuStyle.menu}>
           <h1 className={menuStyle.request}>Pedido</h1>
@@ -174,15 +178,18 @@ function Hall() {
             return (
               <Box display='flex'>
                 <ListItemText key={index}>{item.name} R${item.price} {item.quantity}x</ListItemText>
-                <Button key={item.price + index} onClick={() => deleteItem(index)}><RemoveCircle /></Button>
+                <Button key={item.price + index} onClick={() => deleteItem(index)}><StyledRemoveIcon></StyledRemoveIcon></Button>
               </Box>
             )
           })}
         </Box>
       </Box>
+      <Box>
+        <p className={text.root}>Não se esqueça de confirmar o pedido com o cliente <br></br> antes de enviá-lo para a cozinha. (:</p>
+      </Box>
       <Box className={classes.header} display='flex' flexDirection='row' justifyContent='space-around' margin='50px'>
         <h1>Valor total: R$ {totalPrice()}</h1>
-        <Button onClick={() => {
+        <Button className={btnStyle.edit} onClick={() => {
           requestsCollection(client, number, requests, 'pendente')
           setClient('');
           setNumber('')

@@ -10,6 +10,6 @@ const useStyles = makeStyles({
     fontWeight: '900',
     margin: '20px',
   }
-})
+});
 
 export default useStyles;
