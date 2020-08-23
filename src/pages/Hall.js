@@ -202,4 +202,4 @@ function Hall() {
 }
 
 
-export default Hall;
+export default Hall
